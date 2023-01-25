@@ -160,15 +160,15 @@ form{
 	outline: none;
 	border: none;
 	/* background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f); */
-  background-color: #47adef;
+    background-color: #47adef;
 	background-size: 200%;
 	font-size: 1.2rem;
 	color: #fff;
 	font-family: 'Poppins', sans-serif;
 	text-transform: uppercase;
-	margin: 1rem 0;
 	cursor: pointer;
 	transition: 777ms;
+	margin-top: 2rem;
 }
 
 
@@ -214,3 +214,12 @@ form{
 
 /* https://Github.com/YasinDehfuli
 	 https://Codepen.io/YasinDehfuli */
+
+	 .datePick {
+		width: 50%!important ;
+	 }
+	 .bg-img {
+		background-image: url(../src/assets/images/loginpage.jpg);
+		
+
+	 }

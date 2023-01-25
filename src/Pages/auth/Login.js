@@ -11,7 +11,6 @@ const bull = (
     component="span"
     sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
   >
-    
   </Box>
 );
 
@@ -28,11 +27,10 @@ const Login = () => {
         </div>
         <div class="login-content">
           <form action="index.html">
-            <Card sx={{ minWidth: 275 }}>
+            <Card sx={{ minWidth: 275,padding:"20px" }}>
               <CardContent>
                 <img src={mguserimg} alt="#" />
-
-                <h2 class="title">Log In</h2>
+                <h2 class="title" sx={{}}>LOG In</h2>
                 <div>
                   <div class="i">
                     <i class="fas fa-user"></i>

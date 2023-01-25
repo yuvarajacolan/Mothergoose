@@ -9,7 +9,6 @@ const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
       <Toolbar style={{display:'flex',justifyContent:'space-between',backgroundColor:'aliceblue'}}>
-       
         <div class="img">
           <img src={mgimg} alt="#" style={{width:'180px'}} />
         </div>

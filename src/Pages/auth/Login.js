@@ -16,11 +16,11 @@ const bull = (
 
 const Login = () => {
   const rdnav = () => {
-    navigate("/navbar");
+    navigate("/formpage");
   };
   const navigate = useNavigate();
   return (
-    <div>
+    <div style={{backgroundColor:'#e8f7fe'}}>
       <div class="container">
         <div class="img">
           <img src={mgimg} alt="#" />
@@ -32,9 +32,7 @@ const Login = () => {
                 <img src={mguserimg} alt="#" />
                 <h2 class="title" sx={{}}>LOG In</h2>
                 <div>
-                  <div class="i">
-                    <i class="fas fa-user"></i>
-                  </div>
+                 
                   <Box>
                     <TextField
                       fullWidth
@@ -45,9 +43,7 @@ const Login = () => {
                   </Box>
                 </div>
                 <div style={{ marginTop: "12px" }}>
-                  <div class="i">
-                    <i class="fas fa-user"></i>
-                  </div>
+                
                   <Box>
                     <TextField
                       fullWidth

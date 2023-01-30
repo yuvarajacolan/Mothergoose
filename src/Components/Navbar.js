@@ -7,7 +7,7 @@ import mgimg from ".././assets/images/mg_logo.png";
 const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="static">
+    <AppBar position="static" sx={{boxShadow:'none'}}>
       <Toolbar style={{display:'flex',justifyContent:'space-between',backgroundColor:'aliceblue'}}>
         <div class="img">
           <img src={mgimg} alt="#" style={{width:'180px'}} />

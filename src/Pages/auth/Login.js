@@ -1,11 +1,9 @@
 import React from "react";
-import mgimg from "../../assets/images/newedwer.jpg";
-import mguserimg from "../../assets/images/loginimg.png";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { useNavigate } from "react-router-dom";
+import { router } from "next/router";
 const bull = (
   <Box
     component="span"
@@ -16,21 +14,21 @@ const bull = (
 
 const Login = () => {
   const rdnav = () => {
-    navigate("/formpage");
+    // navigate("/formpage");
+    router.push("/home/dashboard")
   };
-  const navigate = useNavigate();
   return (
     <div style={{backgroundColor:'#e8f7fe'}}>
-      <div class="container">
-        <div class="img">
-          <img src={mgimg} alt="#" />
+      <div className="container">
+        <div className="img">
+            <img src={"../assets/images/newedwer.jpg"} alt="#" />
         </div>
-        <div class="login-content">
+        <div className="login-content">
           <form action="index.html">
             <Card sx={{ minWidth: 275,padding:"20px",backgroundColor:"#f2faff" }}>
               <CardContent>
-                <img src={mguserimg} alt="#" />
-                <h2 class="title" style={{fontSize:'18px'}}>LOG In</h2>
+                <img src={"../assets/images/loginimg.png"} alt="#" />
+                <h2 className="title" style={{fontSize:'18px'}}>LOG In</h2>
                 <div>
                  
                   <Box>
@@ -53,17 +51,17 @@ const Login = () => {
                     />
                   </Box>
                 </div>
-                <div class="col-sm-8 col-md-8" style={{ margin: "auto" }}>
-                    <a class="dedcription-btn" href="#" onClick={rdnav}>
-                      <span class="name-descripeion">Login</span>
-                      <div class="btn-icon">
-                        <i class="fa-solid fa-magnifying-glass-arrow-right"></i>{" "}
+                <div className="col-sm-8 col-md-8" style={{ margin: "auto" }}>
+                    <a className="dedcription-btn" href="#" onClick={rdnav}>
+                      <span className="name-descripeion">Login</span>
+                      <div className="btn-icon">
+                        <i className="fa-solid fa-magnifying-glass-arrow-right"></i>{" "}
                       </div>
                     </a>
                   </div>
                 {/* <input
                   type="submit"
-                  class="btn"
+                  className="btn"
                   value="Login"
                   
                 /> */}

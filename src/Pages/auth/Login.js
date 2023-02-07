@@ -1,6 +1,6 @@
 import React from "react";
 import mgimg from "../../assets/images/newedwer.jpg";
-import mguserimg from "../../assets/images/wom.png";
+import mguserimg from "../../assets/images/loginimg.png";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
@@ -27,10 +27,10 @@ const Login = () => {
         </div>
         <div class="login-content">
           <form action="index.html">
-            <Card sx={{ minWidth: 275,padding:"20px" }}>
+            <Card sx={{ minWidth: 275,padding:"20px",backgroundColor:"#f2faff" }}>
               <CardContent>
                 <img src={mguserimg} alt="#" />
-                <h2 class="title" sx={{}}>LOG In</h2>
+                <h2 class="title" style={{fontSize:'18px'}}>LOG In</h2>
                 <div>
                  
                   <Box>
@@ -53,12 +53,20 @@ const Login = () => {
                     />
                   </Box>
                 </div>
-                <input
+                <div class="col-sm-8 col-md-8" style={{ margin: "auto" }}>
+                    <a class="dedcription-btn" href="#" onClick={rdnav}>
+                      <span class="name-descripeion">Login</span>
+                      <div class="btn-icon">
+                        <i class="fa-solid fa-magnifying-glass-arrow-right"></i>{" "}
+                      </div>
+                    </a>
+                  </div>
+                {/* <input
                   type="submit"
                   class="btn"
                   value="Login"
-                  onClick={rdnav}
-                />
+                  
+                /> */}
               </CardContent>
             </Card>
           </form>

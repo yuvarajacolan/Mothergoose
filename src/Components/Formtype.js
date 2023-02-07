@@ -13,15 +13,20 @@ import Navbar from "./Navbar";
 import { Bargraph } from "./bargraph";
 import PieChart from "./PieChart";
 
+
+
+
 const Formtype = () => {
   const [startdate, setStartDate] = React.useState(null);
   const [enddate, setEndDate] = React.useState(null);
   return (
     <>
       <Navbar />
-      <div >
+      <div>
         <div className="bg-img">
-          <div className="col-lg-5 divcenter">
+       
+          <div className="col-lg-5 col-md-8 col-xs-12 divcenter">
+            
             <Card
               sx={{
                 minWidth: 275,
@@ -81,20 +86,24 @@ const Formtype = () => {
                       renderInput={(params) => (
                         <TextField
                           {...params}
-                        // InputProps={{
-                        //   endAdornment: <CalendarMonthIcon />,
-                        // }}
+                          // InputProps={{
+                          //   endAdornment: <CalendarMonthIcon />,
+                          // }}
                         />
                       )}
                     />
                   </Stack>
-                  <Stack direction="row" spacing={4} sx={{ marginTop: "20px", width: "100%" }}>
+                  <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    spacing={{ xs: 1, sm: 2, md: 6 }}
+                    sx={{ marginTop: "20px", width: "100%" }}
+                  >
                     <TextField
                       id="outlined-basic"
                       label="MG Patient Id"
                       variant="outlined"
                       InputProps={{
-                        endAdornment: <BadgeIcon />
+                        endAdornment: <BadgeIcon />,
                       }}
                       sx={{ width: "100%" }}
                     />
@@ -103,7 +112,7 @@ const Formtype = () => {
                       label="Provider"
                       variant="outlined"
                       InputProps={{
-                        endAdornment: <PersonIcon />
+                        endAdornment: <PersonIcon />,
                       }}
                       sx={{ width: "100%" }}
                     />
@@ -112,18 +121,22 @@ const Formtype = () => {
                       label="Enter You ZIP code"
                       variant="outlined"
                       InputProps={{
-                        endAdornment: <LocationOnIcon />
+                        endAdornment: <LocationOnIcon />,
                       }}
                       sx={{ width: "100%" }}
                     />
                   </Stack>
-                  <Stack direction="row" spacing={4} sx={{ marginTop: "20px", width: "100%" }}>
+                  <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    spacing={{ xs: 1, sm: 2, md: 6 }}
+                    sx={{ marginTop: "20px", width: "100%" }}
+                  >
                     <TextField
                       id="outlined-basic"
                       label="Insurance Payer"
                       variant="outlined"
                       InputProps={{
-                        endAdornment: <PersonIcon />
+                        endAdornment: <PersonIcon />,
                       }}
                       sx={{ width: "100%" }}
                     />
@@ -158,11 +171,11 @@ const Formtype = () => {
           </div>
         </div>
       </div>
-    
+
       <br />
       <br />
       <br />
-      <Bargraph />
+
       <br />
       <br />
       <div className="row" style={{ width: "100%" }}>

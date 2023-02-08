@@ -2,23 +2,36 @@ import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-class Bargraph extends Component {
+// class Bargraph extends Component {
+
+
+// }
+// module.exports = Bargraph;        
+
+
+
+
+export default class Bargraph extends Component {
 	render() {
+		console.log('datasets',this.props.datasets)
+
 		const options = {
 			title: {
-				text: "Basic Column Chart"
+				text: this.props.title
 			},
 			data: [
 			{
 				// Change type to "doughnut", "line", "splineArea", etc.
 				type: "column",
-				dataPoints: [
-					{ label: "Apple",  y: 10  },
-					{ label: "Orange", y: 15  },
-					{ label: "Banana", y: 25  },
-					{ label: "Mango",  y: 30  },
-					{ label: "Grape",  y: 28  }
-				]
+				dataPoints: this.props.datasets
+				
+				// [
+				// 	{ label: "Apple",  y: 10  },
+				// 	{ label: "Orange", y: 15  },
+				// 	{ label: "Banana", y: 25  },
+				// 	{ label: "Mango",  y: 30  },
+				// 	{ label: "Grape",  y: 28  }
+				// ]
 			}
 			]
 		}
@@ -32,4 +45,3 @@ class Bargraph extends Component {
 		);
 	}
 }
-module.exports = Bargraph;         

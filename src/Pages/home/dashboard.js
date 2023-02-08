@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -13,7 +13,7 @@ import Navbar from "<prefix>/components/Navbar";
 import dynamic from 'next/dynamic'
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { patientBarAction } from 'redux/slice/userSlice';
 import { postPatientBarChatApi,postPatientEnrolledBarChatApi,postPatientAlcoholUsedPieChartApi, postPatientPieChartApi, postPatientSmokeUsedPieChartApi, postPatientAgeDeliveryBarChartApi, postPatientAgeGroupDeliveryPieChartApi, postPatientHealthInsurancePieChartApi, postPatientStressedPieChartApi, postPatientLackOfTransportationsPieChartApi } from 'redux/action/userAction';
 
@@ -23,19 +23,22 @@ const PieChart = dynamic(() => import("../../components/PieChart"), { ssr: false
 
 
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     const dispatch = useDispatch();
-
+    const patientBarResponse = useSelector(
+        (state) => state.user.patientBarChartinfo
+      );
     const [startdate, setStartDate] = React.useState(null);
     const [enddate, setEndDate] = React.useState(null);
+    const [PatientBarChat, setPatientBarChat] = useState([])
 
-    React.useEffect(() => {
+     useEffect(() => {
         const reqBody = {
             "fromDate": "2022-02-01",
             "toDate": "2023-01-31"
         }
         console.log("HELLO WROLD", reqBody)
-        //dispatch(postPatientBarChatApi(reqBody))
+        dispatch(postPatientBarChatApi(reqBody))
         // dispatch(postPatientEnrolledBarChatApi(reqBody))
         // dispatch(postPatientAlcoholUsedPieChartApi(reqBody))
         // dispatch(postPatientPieChartApi(reqBody))
@@ -47,6 +50,25 @@ const Dashboard = () => {
         // dispatch(postPatientLackOfTransportationsPieChartApi(reqBody))
 
     }, [])
+
+    useEffect(() => {
+     console.log('patientBarResponse',patientBarResponse)
+     let dataPoints = []
+     if(patientBarResponse?.data){
+        patientBarResponse?.data.labels?.map((item,i)=>{
+            dataPoints.push(
+                { label: item,  y: patientBarResponse?.data?.datasets[0]?.data[i]},
+            )
+    
+         })
+         console.log('dataPoints',dataPoints)
+         setPatientBarChat(dataPoints)
+     }
+
+    }, [patientBarResponse])
+    
+
+
 
     const formik = useFormik({
         // enableReinitialize: true,
@@ -99,7 +121,7 @@ const Dashboard = () => {
                                     color: "#46adef",
                                 }}
                             >
-                                Mother Goose{" "}
+                                Mother Goose{" "} 
                             </h2>
                             <h4
                                 style={{
@@ -361,12 +383,12 @@ const Dashboard = () => {
             <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-6">
                     <div className="card">
-                        <Bargraph />
+                    <Bargraph {...props} title = {patientBarResponse?.title} datasets = {PatientBarChat} />
                     </div>
                 </div>
                 <div className="col-lg-6">
                     <div className="card">
-                        <Bargraph />
+                    <Bargraph {...props} title = {patientBarResponse?.title} datasets = {PatientBarChat} />
                     </div>
                 </div>
             </div>

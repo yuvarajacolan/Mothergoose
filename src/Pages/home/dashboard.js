@@ -15,7 +15,7 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { patientBarAction } from 'redux/slice/userSlice';
-import { postPatientBarChatApi } from 'redux/action/userAction';
+import { postPatientBarChatApi,postPatientEnrolledBarChatApi } from 'redux/action/userAction';
 
 
 const Bargraph = dynamic(() => import("../../components/Bargraph"), { ssr: false });
@@ -28,17 +28,19 @@ const Dashboard = () => {
 
     const [startdate, setStartDate] = React.useState(null);
     const [enddate, setEndDate] = React.useState(null);
+
     React.useEffect(() => {
         const reqBody = {
-            "fromDate":"2022-02-01",
-         "toDate":"2023-01-31"
-          }
-         console.log("HELLO WROLD", reqBody)
-         dispatch(postPatientBarChatApi(reqBody))
-    
-    
+            "fromDate": "2022-02-01",
+            "toDate": "2023-01-31"
+        }
+        console.log("HELLO WROLD", reqBody)
+        dispatch(postPatientBarChatApi(reqBody))
+        dispatch(postPatientEnrolledBarChatApi(reqBody))
+
+
     }, [])
-    
+
     const formik = useFormik({
         // enableReinitialize: true,
         initialValues: {
@@ -52,7 +54,7 @@ const Dashboard = () => {
         },
         validationSchema: Yup.object({
             // startdate: Yup.string().required("startdate is required"),
-            // enddate: Yup.string().required("Password is required"),
+            // enddate: Yup.string().required("enddate is required"),
             patientID: Yup.string().required("patientID is required"),
             provider: Yup.string().required("provider is required"),
             zipcode: Yup.string().required("zipcode is required"),
@@ -61,7 +63,7 @@ const Dashboard = () => {
         }),
         onSubmit: (values) => {
             // dispatch(signInApi(values));
-            console.log(values,"====")
+            console.log(values, "====")
         },
     });
     return (
@@ -107,16 +109,16 @@ const Dashboard = () => {
                                     <Stack direction="row" spacing={4}>
                                         <DatePicker
                                             label="From Date"
-                                             value={startdate}
-                                           // value={formik.values.startdate}
+                                            value={startdate}
+                                            // value={formik.values.startdate}
                                             // onChange={formik.handleChange}
                                             name="startdate"
                                             type="date"
-                                            error={Boolean(
-                                                formik.touched.startdate &&
-                                                formik.errors.startdate
-                                            )}
-                                             fullWidth
+                                            // error={Boolean(
+                                            //     formik.touched.startdate &&
+                                            //     formik.errors.startdate
+                                            // )}
+                                            fullWidth
                                             // helpertext={
                                             //     formik.touched.startdate &&
                                             //     formik.errors.startdate
@@ -151,7 +153,7 @@ const Dashboard = () => {
                                             //     formik.touched.enddate &&
                                             //     formik.errors.enddate
                                             // }
-                                             value={enddate}
+                                            value={enddate}
                                             className="datePick"
                                             onChange={(newValue) => {
                                                 setEndDate(newValue);
@@ -293,15 +295,15 @@ const Dashboard = () => {
                                             sx={{ width: "100%" }}
                                         />
                                         {/* <TextField
-                      id="outlined-basic"
-                      label="Mode of Delivery"
-                      variant="outlined"
-                      select
-                      sx={{ width: "100%" }}
-                    /> */}
+                                             id="outlined-basic"
+                                             label="Mode of Delivery"
+                                             variant="outlined"
+                                             select
+                                             sx={{ width: "100%" }}
+                                            /> */}
                                     </Stack>
                                     <div className="col-sm-4 col-md-4" style={{ margin: "auto" }}>
-                                        <a className="dedcription-btn" href="#"  onClick={formik.handleSubmit}>
+                                        <a className="dedcription-btn" href="#" onClick={formik.handleSubmit}>
                                             <span className="name-descripeion">Find</span>
                                             <div className="btn-icon">
                                                 <i className="fa-solid fa-magnifying-glass-arrow-right"></i>{" "}
@@ -352,10 +354,7 @@ const Dashboard = () => {
             <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-6">
                     <div className="card">
-
-
                         <Bargraph />
-
                     </div>
                 </div>
                 <div className="col-lg-6">

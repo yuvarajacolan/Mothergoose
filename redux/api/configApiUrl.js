@@ -5,6 +5,8 @@ export const BASE_URL = process.env.BASE_URL
 
 export const signInUrl = "api/login";
 export const patientBarChartUrl = "chart/patients_bar_chart_data";
-// export const forgetPasswordUrl = "/send/forgot/password/otp/tomail?email";
+export const patientEnrolledBarChartUrl = "chart/patients_enrolled_in_mg_bar_chart_data";
+export const patientAlcoholUsedPieChartUrl = "chart/patients_alcohol_use_pie_chart_data";
+
 // export const verifyOtpUrl = "/verify/otp";
 // export const resetPasswordUrl = "/reset/password/";

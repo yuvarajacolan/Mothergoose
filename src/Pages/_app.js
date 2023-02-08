@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page);  return (
     <>
       {isLoading ? <LoaderState /> : ""}
-        <ToastContainer />
+      <ToastContainer />
       <Provider store={store}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />

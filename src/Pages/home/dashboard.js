@@ -15,7 +15,7 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { patientBarAction } from 'redux/slice/userSlice';
-import { postPatientBarChatApi,postPatientEnrolledBarChatApi,postPatientAlcoholUsedPieChartApi, postPatientPieChartApi } from 'redux/action/userAction';
+import { postPatientBarChatApi,postPatientEnrolledBarChatApi,postPatientAlcoholUsedPieChartApi, postPatientPieChartApi, postPatientSmokeUsedPieChartApi, postPatientAgeDeliveryBarChartApi, postPatientAgeGroupDeliveryPieChartApi, postPatientHealthInsurancePieChartApi, postPatientStressedPieChartApi, postPatientLackOfTransportationsPieChartApi } from 'redux/action/userAction';
 
 
 const Bargraph = dynamic(() => import("../../components/Bargraph"), { ssr: false });
@@ -35,13 +35,16 @@ const Dashboard = () => {
             "toDate": "2023-01-31"
         }
         console.log("HELLO WROLD", reqBody)
-        // dispatch(postPatientBarChatApi(reqBody))
+        //dispatch(postPatientBarChatApi(reqBody))
         // dispatch(postPatientEnrolledBarChatApi(reqBody))
-       // dispatch(postPatientAlcoholUsedPieChartApi(reqBody))
-        dispatch(postPatientPieChartApi(reqBody))
-
-
-
+        // dispatch(postPatientAlcoholUsedPieChartApi(reqBody))
+        // dispatch(postPatientPieChartApi(reqBody))
+        // dispatch(postPatientSmokeUsedPieChartApi(reqBody))
+        // dispatch(postPatientAgeDeliveryBarChartApi(reqBody))
+        // dispatch(postPatientAgeGroupDeliveryPieChartApi(reqBody))
+        // dispatch(postPatientHealthInsurancePieChartApi(reqBody))
+        // dispatch(postPatientStressedPieChartApi(reqBody))
+        // dispatch(postPatientLackOfTransportationsPieChartApi(reqBody))
 
     }, [])
 

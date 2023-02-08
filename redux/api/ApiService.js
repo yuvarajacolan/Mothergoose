@@ -16,6 +16,8 @@ export const APIService = async (method, url, body) => {
     const userId = typeof window !== "undefined" ? sessionStorage.getItem("userId") : "";
 
 console.log("accessToken",accessToken)
+console.log("url",url)
+
   function baseUrl() {
   
       return `${BASE_URL}`;
@@ -25,7 +27,7 @@ console.log("accessToken",accessToken)
   return await axios({
     method: method,
     baseURL: baseUrl(),
-    url: url,
+    url:url,
     headers: {
       Authorization:accessToken,
       "Content-Type": "application/json",

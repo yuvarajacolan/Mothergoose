@@ -3,13 +3,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import Head from "next/head";
 import Script from "next/script";
 // import { store } from "../redux/store";
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
+import store from 'redux/store';
+// import store 
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <>
-      {/* <Provider store={store}> */}
+      <Provider store={store}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link
@@ -34,8 +36,7 @@ export default function App({ Component, pageProps }) {
           crossorigin="anonymous"
         />
         {getLayout(<Component {...pageProps} />)}
-
-      {/* </Provider> */}
+      </Provider>
     </>
   )
 }

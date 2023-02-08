@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -13,6 +13,9 @@ import Navbar from "<prefix>/components/Navbar";
 import dynamic from 'next/dynamic'
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+import { useDispatch } from 'react-redux';
+import { patientBarAction } from 'redux/slice/userSlice';
+import { postPatientBarChatApi } from 'redux/action/userAction';
 
 
 const Bargraph = dynamic(() => import("../../components/Bargraph"), { ssr: false });
@@ -21,9 +24,21 @@ const PieChart = dynamic(() => import("../../components/PieChart"), { ssr: false
 
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
+
     const [startdate, setStartDate] = React.useState(null);
     const [enddate, setEndDate] = React.useState(null);
-
+    React.useEffect(() => {
+        const reqBody = {
+            "fromDate":"2022-02-01",
+         "toDate":"2023-01-31"
+          }
+         console.log("HELLO WROLD", reqBody)
+         dispatch(postPatientBarChatApi(reqBody))
+    
+    
+    }, [])
+    
     const formik = useFormik({
         // enableReinitialize: true,
         initialValues: {
@@ -36,8 +51,8 @@ const Dashboard = () => {
             state: "",
         },
         validationSchema: Yup.object({
-            startdate: Yup.string().required("startdate is required"),
-            enddate: Yup.string().required("Password is required"),
+            // startdate: Yup.string().required("startdate is required"),
+            // enddate: Yup.string().required("Password is required"),
             patientID: Yup.string().required("patientID is required"),
             provider: Yup.string().required("provider is required"),
             zipcode: Yup.string().required("zipcode is required"),
@@ -46,6 +61,7 @@ const Dashboard = () => {
         }),
         onSubmit: (values) => {
             // dispatch(signInApi(values));
+            console.log(values,"====")
         },
     });
     return (
@@ -96,10 +112,10 @@ const Dashboard = () => {
                                             // onChange={formik.handleChange}
                                             name="startdate"
                                             type="date"
-                                            // error={Boolean(
-                                            //     formik.touched.startdate &&
-                                            //     formik.errors.startdate
-                                            // )}
+                                            error={Boolean(
+                                                formik.touched.startdate &&
+                                                formik.errors.startdate
+                                            )}
                                              fullWidth
                                             // helpertext={
                                             //     formik.touched.startdate &&
@@ -126,10 +142,10 @@ const Dashboard = () => {
                                             name="enddate"
                                             type="date"
                                             // onBlur={formik.handleBlur}
-                                            // error={Boolean(
-                                            //     formik.touched.enddate &&
-                                            //     formik.errors.enddate
-                                            // )}
+                                            error={Boolean(
+                                                formik.touched.enddate &&
+                                                formik.errors.enddate
+                                            )}
                                             // fullWidth
                                             // helpertext={
                                             //     formik.touched.enddate &&
@@ -161,10 +177,10 @@ const Dashboard = () => {
                                                 formik.errors.patientID
                                             )}
                                             fullWidth
-                                            helpertext={
-                                                formik.touched.patientID &&
-                                                formik.errors.patientID
-                                            }
+                                            // helpertext={
+                                            //     formik.touched.patientID &&
+                                            //     formik.errors.patientID
+                                            // }
                                             id="outlined-basic"
                                             label="MG Patient Id"
                                             variant="outlined"
@@ -184,10 +200,10 @@ const Dashboard = () => {
                                                 formik.errors.provider
                                             )}
                                             fullWidth
-                                            helpertext={
-                                                formik.touched.provider &&
-                                                formik.errors.provider
-                                            }
+                                            // helpertext={
+                                            //     formik.touched.provider &&
+                                            //     formik.errors.provider
+                                            // }
                                             name="provider"
                                             onBlur={formik.handleBlur}
                                             onChange={formik.handleChange}
@@ -207,10 +223,10 @@ const Dashboard = () => {
                                                 formik.errors.zipcode
                                             )}
                                             fullWidth
-                                            helpertext={
-                                                formik.touched.zipcode &&
-                                                formik.errors.zipcode
-                                            }
+                                            // helpertext={
+                                            //     formik.touched.zipcode &&
+                                            //     formik.errors.zipcode
+                                            // }
                                             name="zipcode"
                                             onBlur={formik.handleBlur}
                                             onChange={formik.handleChange}
@@ -236,10 +252,10 @@ const Dashboard = () => {
                                                 formik.errors.insurancepayer
                                             )}
                                             fullWidth
-                                            helpertext={
-                                                formik.touched.insurancepayer &&
-                                                formik.errors.insurancepayer
-                                            }
+                                            // helpertext={
+                                            //     formik.touched.insurancepayer &&
+                                            //     formik.errors.insurancepayer
+                                            // }
                                             name="insurancepayer"
                                             onBlur={formik.handleBlur}
                                             onChange={formik.handleChange}
@@ -259,10 +275,10 @@ const Dashboard = () => {
                                                 formik.errors.state
                                             )}
                                             fullWidth
-                                            helpertext={
-                                                formik.touched.state &&
-                                                formik.errors.state
-                                            }
+                                            // helpertext={
+                                            //     formik.touched.state &&
+                                            //     formik.errors.state
+                                            // }
                                             name="state"
                                             onBlur={formik.handleBlur}
                                             onChange={formik.handleChange}

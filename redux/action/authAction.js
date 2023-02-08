@@ -1,19 +1,25 @@
+import { errorToast,successToast } from "<prefix>/Components/helper";
 import axios from "axios";
 import { BASE_URL, signInUrl } from "../api/configApiURL";
 import {
     signInAction,
 } from "../slice/authSlice";
-// import { errorToast, successToast } from "../../components/helper";
 
 export function signInApi(data) {
+    
     return async (dispatch) => {
         dispatch(signInAction({ isLoading: true }));
+        const config = {
+            headers: { "Accept": "application/json" }
+        }
         axios
-            .post(`${BASE_URL}${signInUrl}`, data)
+            .post(`${BASE_URL}${signInUrl}`, data,config)
             .then((user) => {
                 // const { status, response, message } = user.data;
                 console.log("API SUCESS FULL ", user)
                 dispatch(signInAction({ isLoading: false, response: user }));
+                successToast("User signed in successfully");
+
                 // if (user.status === 200) {
                 //     successToast("User signed in successfully");
                 //     if (user?.data?.roles[0] === "ROLE_USER") {
@@ -43,8 +49,8 @@ export function signInApi(data) {
                 // }
             })
             .catch((e) => {
+                errorToast("Bad Credentials");
                 console.log("BAD REQUEST", e)
-                // errorToast("Bad Credentials");
                 dispatch(signInAction({ isLoading: false }));
             });
     };

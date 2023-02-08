@@ -5,12 +5,22 @@ import Script from "next/script";
 // import { store } from "../redux/store";
 import { Provider } from 'react-redux';
 import store from 'redux/store';
+import { useLayoutEffect, useState } from 'react';
+import LoaderState from '<prefix>/Components/Loader';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 // import store 
 
 export default function App({ Component, pageProps }) {
-  const getLayout = Component.getLayout ?? ((page) => page);
-  return (
+  const [isLoading, setIsLoading] = useState(true);
+  useLayoutEffect(() => {
+    setTimeout(() => setIsLoading(false), 800);
+  }, []);
+  const getLayout = Component.getLayout ?? ((page) => page);  return (
     <>
+      {isLoading ? <LoaderState /> : ""}
+        <ToastContainer />
       <Provider store={store}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />

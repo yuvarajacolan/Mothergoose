@@ -6,7 +6,11 @@ import CardContent from "@mui/material/CardContent";
 import { router } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { signInApi } from "redux/action/authAction";
-import { useFormik } from "formik";
+import { useFormik } from 'formik';
+import * as yup from "yup";
+import LoaderState from "<prefix>/Components/Loader";
+import { errorToast } from "<prefix>/Components/helper";
+
 
 
 // const bull = (
@@ -19,47 +23,48 @@ import { useFormik } from "formik";
 
 const Login = () => {
   const dispatch = useDispatch();
-
+  const LoginDataLoading = useSelector(
+    (state) => state.auth.isLoading
+  );
   // const rdnav = () => {
   //   // navigate("/formpage");
   //   router.push("/home/dashboard")
   // };
 
-  const loginFunction = () => {
-    const reqBody = {
-      username: "mg_admin",
-      password: "Admin@123"
-    }
-    console.log("HELLO WROLD", reqBody)
-    dispatch(signInApi(reqBody))
-  }
+  // const loginFunction = () => {
+  //   const reqBody = {
+  //     username: "mg_admin",
+  //     password: "Admin@123"
+  //   }
+  //   console.log("HELLO WROLD", reqBody)
+  //   dispatch(signInApi(reqBody))
+  // }
 
 
   const formik = useFormik({
     initialValues: {
-      userName: "",
+      username: "",
       password: "",
     },
     validationSchema: yup.object({
-      userName: yup.string().required("Name is required"),
+      username: yup.string().required("Name is required"),
       password: yup
         .string()
         .required('Please Enter your password')
-        // .matches(passRegExp,"Enter strong password")
-        // .matches(passRegExp, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
+      // .matches(passRegExp,"Enter strong password")
+      // .matches(passRegExp, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
     }),
-    // onSubmit: (data) => {
-    //   let newData = {
-    //     user_name: data.fullName,
-    //     password: data.password
-    //   }
-    //   console.log("==>", newData)
-    //   loginPress(newData)
+    onSubmit: (data) => {
 
-    //   // dispatch(LoginApiFun(newData));
-    //   router.push("/auth/fingerprint");
-    
-    // },
+      const reqBody = {
+        username: "mg_admin",
+        password: "Admin@123"
+      }
+     console.log("HELLO WROLD", reqBody)
+     dispatch(signInApi(reqBody))
+      //  router.push("/home/dashboard")
+
+    },
   });
 
   const HelloWorld = () => {
@@ -72,7 +77,7 @@ const Login = () => {
           <img src="/assets/images/newedwer.jpg" alt="#sdsdsd" />
         </div>
         <div className="login-content">
-          <form >
+        
             <Card sx={{ minWidth: 275, padding: "20px", backgroundColor: "#f2faff" }}>
               <CardContent>
                 <img src="/assets/images/loginimg.png" alt="TOP IMAGE" />
@@ -80,34 +85,54 @@ const Login = () => {
                 <div>
                   <Box>
                     <TextField
+                      error={Boolean(
+                        formik.touched.username &&
+                        formik.errors.username
+                      )}
                       fullWidth
+                      helpertext={
+                        formik.touched.username &&
+                        formik.errors.username
+                      }
                       id="standard-basic"
                       label="User name"
+                      name="username"
+                      type="text"
                       variant="standard"
-                      value={formik.values.userName}
+                      value={formik.values.username}
+                      onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
-                      helperText={formik.touched.userName ? formik.errors.userName : null}
-                      error={formik.touched.userName ? formik.errors.userName : null}
+                      // helperText={formik.touched.username ? formik.errors.username : null}
+                      // error={formik.touched.username ? formik.errors.username : null}
                     />
                   </Box>
                 </div>
                 <div style={{ marginTop: "12px" }}>
                   <Box>
                     <TextField
+                       error={Boolean(
+                        formik.touched.password && formik.errors.password
+                      )}
                       fullWidth
+                      helpertext={
+                        formik.touched.password && formik.errors.password
+                      }
                       id="standard-basic"
                       label="Password"
                       variant="standard"
+                      type="password"
+                      name="password"
                       value={formik.values.password}
+                      onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
-                      helperText={formik.touched.password ? formik.errors.password : null}
-                      error={formik.touched.password ? formik.errors.password : null}
+                      // helperText={formik.touched.password ? formik.errors.password : null}
+                      // error={formik.touched.password ? formik.errors.password : null}
                     />
                   </Box>
                 </div>
                 <div className="col-sm-8 col-md-8" style={{ margin: "auto" }}>
-                  <a className="dedcription-btn" href="#" onClick={()=>loginFunction()}>
-                    <span  className="name-descripeion">Login</span>
+                  <a className="dedcription-btn" href="#" onClick={formik.handleSubmit}>
+                    <span className="name-descripeion">Login</span>
                     <div className="btn-icon">
                       <i className="fa-solid fa-magnifying-glass-arrow-right"></i>{" "}
                     </div>
@@ -115,9 +140,11 @@ const Login = () => {
                 </div>
               </CardContent>
             </Card>
-          </form>   
+     
         </div>
       </div>
+      {LoginDataLoading ? <LoaderState /> : ""}
+
     </div>
   );
 };

@@ -11,14 +11,43 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import BadgeIcon from "@mui/icons-material/Badge";
 import Navbar from "<prefix>/components/Navbar";
 import dynamic from 'next/dynamic'
+import { useFormik } from 'formik';
+import * as Yup from "yup";
 
-const Bargraph = dynamic(() => import("../../components/Bargraph"),{ ssr: false });
+
+const Bargraph = dynamic(() => import("../../components/Bargraph"), { ssr: false });
 const PieChart = dynamic(() => import("../../components/PieChart"), { ssr: false });
+
 
 
 const Dashboard = () => {
     const [startdate, setStartDate] = React.useState(null);
     const [enddate, setEndDate] = React.useState(null);
+
+    const formik = useFormik({
+        // enableReinitialize: true,
+        initialValues: {
+            startdate: "",
+            enddate: "",
+            patientID: "",
+            provider: "",
+            zipcode: "",
+            insurancepayer: "",
+            state: "",
+        },
+        validationSchema: Yup.object({
+            startdate: Yup.string().required("startdate is required"),
+            enddate: Yup.string().required("Password is required"),
+            patientID: Yup.string().required("patientID is required"),
+            provider: Yup.string().required("provider is required"),
+            zipcode: Yup.string().required("zipcode is required"),
+            insurancepayer: Yup.string().required("insurancepayer is required"),
+            state: Yup.string().required("state is required"),
+        }),
+        onSubmit: (values) => {
+            // dispatch(signInApi(values));
+        },
+    });
     return (
         <>
             <Navbar />
@@ -62,7 +91,21 @@ const Dashboard = () => {
                                     <Stack direction="row" spacing={4}>
                                         <DatePicker
                                             label="From Date"
-                                            value={startdate}
+                                             value={startdate}
+                                           // value={formik.values.startdate}
+                                            // onChange={formik.handleChange}
+                                            name="startdate"
+                                            type="date"
+                                            // error={Boolean(
+                                            //     formik.touched.startdate &&
+                                            //     formik.errors.startdate
+                                            // )}
+                                             fullWidth
+                                            // helpertext={
+                                            //     formik.touched.startdate &&
+                                            //     formik.errors.startdate
+                                            // }
+                                            // onBlur={formik.handleBlur}
                                             onChange={(newValue) => {
                                                 setStartDate(newValue);
                                             }}
@@ -78,7 +121,21 @@ const Dashboard = () => {
                                         />
                                         <DatePicker
                                             label="To Date"
-                                            value={enddate}
+                                            //value={formik.values.enddate}
+                                            //onChange={formik.handleChange}
+                                            name="enddate"
+                                            type="date"
+                                            // onBlur={formik.handleBlur}
+                                            // error={Boolean(
+                                            //     formik.touched.enddate &&
+                                            //     formik.errors.enddate
+                                            // )}
+                                            // fullWidth
+                                            // helpertext={
+                                            //     formik.touched.enddate &&
+                                            //     formik.errors.enddate
+                                            // }
+                                             value={enddate}
                                             className="datePick"
                                             onChange={(newValue) => {
                                                 setEndDate(newValue);
@@ -99,6 +156,15 @@ const Dashboard = () => {
                                         sx={{ marginTop: "20px", width: "100%" }}
                                     >
                                         <TextField
+                                            error={Boolean(
+                                                formik.touched.patientID &&
+                                                formik.errors.patientID
+                                            )}
+                                            fullWidth
+                                            helpertext={
+                                                formik.touched.patientID &&
+                                                formik.errors.patientID
+                                            }
                                             id="outlined-basic"
                                             label="MG Patient Id"
                                             variant="outlined"
@@ -106,8 +172,27 @@ const Dashboard = () => {
                                                 endAdornment: <BadgeIcon />,
                                             }}
                                             sx={{ width: "100%" }}
+                                            name="patientID"
+                                            onBlur={formik.handleBlur}
+                                            onChange={formik.handleChange}
+                                            type="text"
+                                            value={formik.values.patientID}
                                         />
                                         <TextField
+                                            error={Boolean(
+                                                formik.touched.provider &&
+                                                formik.errors.provider
+                                            )}
+                                            fullWidth
+                                            helpertext={
+                                                formik.touched.provider &&
+                                                formik.errors.provider
+                                            }
+                                            name="provider"
+                                            onBlur={formik.handleBlur}
+                                            onChange={formik.handleChange}
+                                            type="text"
+                                            value={formik.values.provider}
                                             id="outlined-basic"
                                             label="Provider"
                                             variant="outlined"
@@ -117,6 +202,20 @@ const Dashboard = () => {
                                             sx={{ width: "100%" }}
                                         />
                                         <TextField
+                                            error={Boolean(
+                                                formik.touched.zipcode &&
+                                                formik.errors.zipcode
+                                            )}
+                                            fullWidth
+                                            helpertext={
+                                                formik.touched.zipcode &&
+                                                formik.errors.zipcode
+                                            }
+                                            name="zipcode"
+                                            onBlur={formik.handleBlur}
+                                            onChange={formik.handleChange}
+                                            type="text"
+                                            value={formik.values.zipcode}
                                             id="outlined-basic"
                                             label="Enter You ZIP code"
                                             variant="outlined"
@@ -132,6 +231,20 @@ const Dashboard = () => {
                                         sx={{ marginTop: "20px", width: "100%" }}
                                     >
                                         <TextField
+                                            error={Boolean(
+                                                formik.touched.insurancepayer &&
+                                                formik.errors.insurancepayer
+                                            )}
+                                            fullWidth
+                                            helpertext={
+                                                formik.touched.insurancepayer &&
+                                                formik.errors.insurancepayer
+                                            }
+                                            name="insurancepayer"
+                                            onBlur={formik.handleBlur}
+                                            onChange={formik.handleChange}
+                                            type="text"
+                                            value={formik.values.insurancepayer}
                                             id="outlined-basic"
                                             label="Insurance Payer"
                                             variant="outlined"
@@ -141,6 +254,20 @@ const Dashboard = () => {
                                             sx={{ width: "100%" }}
                                         />
                                         <TextField
+                                            error={Boolean(
+                                                formik.touched.state &&
+                                                formik.errors.state
+                                            )}
+                                            fullWidth
+                                            helpertext={
+                                                formik.touched.state &&
+                                                formik.errors.state
+                                            }
+                                            name="state"
+                                            onBlur={formik.handleBlur}
+                                            onChange={formik.handleChange}
+                                            type="text"
+                                            value={formik.values.state}
                                             id="outlined-basic"
                                             label="State"
                                             variant="outlined"
@@ -158,7 +285,7 @@ const Dashboard = () => {
                     /> */}
                                     </Stack>
                                     <div className="col-sm-4 col-md-4" style={{ margin: "auto" }}>
-                                        <a className="dedcription-btn" href="#">
+                                        <a className="dedcription-btn" href="#"  onClick={formik.handleSubmit}>
                                             <span className="name-descripeion">Find</span>
                                             <div className="btn-icon">
                                                 <i className="fa-solid fa-magnifying-glass-arrow-right"></i>{" "}

@@ -15,7 +15,7 @@ export const APIService = async (method, url, body) => {
   const accessToken = typeof window !== "undefined" ? sessionStorage.getItem("accessToken") : "";
     const userId = typeof window !== "undefined" ? sessionStorage.getItem("userId") : "";
 
-
+console.log("accessToken",accessToken)
   function baseUrl() {
   
       return `${BASE_URL}`;
@@ -27,7 +27,7 @@ export const APIService = async (method, url, body) => {
     baseURL: baseUrl(),
     url: url,
     headers: {
-      Authorization: accessToken,
+      Authorization:accessToken,
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
     },
@@ -36,19 +36,19 @@ export const APIService = async (method, url, body) => {
     .then((e) => {
         console.log('sucessinAPIservice',e)
 
-      const { data } = e;
+      const { data,status,message } = e;
       if (userId === null || undefined || "") {
         router.push("/auth/login");
-      } else if (data.status === 200 || data.status === "success") {
+      } else if (status === 200 || status === "success") {
         return {
           status: "success",
           data: data,
-          message: data.message,
+          message:message,
         };
       } else {
         return {
           status: "error",
-          message: data.message,
+          message:message,
         };
       }
     })

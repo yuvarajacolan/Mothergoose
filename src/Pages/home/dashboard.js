@@ -15,7 +15,7 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { patientBarAction } from 'redux/slice/userSlice';
-import { postPatientBarChatApi,postPatientEnrolledBarChatApi } from 'redux/action/userAction';
+import { postPatientBarChatApi,postPatientEnrolledBarChatApi,postPatientAlcoholUsedPieChartApi, postPatientPieChartApi } from 'redux/action/userAction';
 
 
 const Bargraph = dynamic(() => import("../../components/Bargraph"), { ssr: false });
@@ -35,8 +35,12 @@ const Dashboard = () => {
             "toDate": "2023-01-31"
         }
         console.log("HELLO WROLD", reqBody)
-        dispatch(postPatientBarChatApi(reqBody))
-        dispatch(postPatientEnrolledBarChatApi(reqBody))
+        // dispatch(postPatientBarChatApi(reqBody))
+        // dispatch(postPatientEnrolledBarChatApi(reqBody))
+       // dispatch(postPatientAlcoholUsedPieChartApi(reqBody))
+        dispatch(postPatientPieChartApi(reqBody))
+
+
 
 
     }, [])

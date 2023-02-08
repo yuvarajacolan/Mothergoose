@@ -16,17 +16,16 @@ export function signInApi(data) {
         const { status, response, message } = user.data;
         console.log("API SUCESS FULL ", user);
       
-
         if (user.status === 200) {
           successToast("User signed in successfully");
           dispatch(signInAction({ isLoading: false, response: user }));
           sessionStorage.setItem(
             "accessToken",
-            "Bearer " + user?.data?.accessToken
+            "Bearer " + user?.data?.access
           );
-          sessionStorage.setItem("refreshToken", user?.data?.refreshToken);
-          sessionStorage.setItem("userId", user?.data?.refreshToken);
-          router.push("/home/dashboard");
+          sessionStorage.setItem("refreshToken", user?.data?.refresh);
+          sessionStorage.setItem("userId", user?.data?.refresh);
+           router.push("/home/dashboard");
 
         } else {
           errorToast(message);

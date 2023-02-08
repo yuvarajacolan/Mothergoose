@@ -9,7 +9,7 @@ const Navbar = () => {
     <AppBar position="static" sx={{boxShadow:'none'}}>
       <Toolbar style={{display:'flex',justifyContent:'space-between',backgroundColor:'aliceblue'}}>
         <div class="img">
-          <img src={"../assets/images/mg_logo.png"} alt="#" style={{width:'180px'}} />
+          <img src="/assets/images/mg_logo.png" alt="#" style={{width:'180px'}} />
         </div>
         <Button color="inherit" style={{color:'#0078c3',fontWeight:'800'}}>Logout</Button>
       </Toolbar>

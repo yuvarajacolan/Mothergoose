@@ -470,6 +470,21 @@ const Dashboard = (props) => {
             <br />
             <br />
             <div className="row" style={{ width: "100%" }}>
+                
+                <div className="col-lg-12">
+                    <div className="card">
+                    <Bargraph {...props} title = {patientAgeDeliveryResponse?.title} datasets = {PatientAgeDelivertBarChat} />
+                    </div>
+                </div>
+            </div>
+            
+            <br />
+            <br />
+            <br />
+
+            <br />
+            <br />
+            <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-6">
                     <div className="card">
                     <PieChart {...props} title = {patientAlcoholUsedPieResponse?.title} datasets = {patientAlcoholUsedPieChart} />
@@ -506,7 +521,9 @@ const Dashboard = (props) => {
                 </div>
                 <div className="col-lg-6">
                     <div className="card">
-                    <Bargraph {...props} title = {patientAgeDeliveryResponse?.title} datasets = {PatientAgeDelivertBarChat} />
+                    <PieChart {...props} title = {patientLackOfTransportationsPieResponse?.title} datasets = {patientLackOfTransportationsPieChart} />
+
+                    {/* <Bargraph {...props} title = {patientAgeDeliveryResponse?.title} datasets = {PatientAgeDelivertBarChat} /> */}
                     </div>
                 </div>
             </div>

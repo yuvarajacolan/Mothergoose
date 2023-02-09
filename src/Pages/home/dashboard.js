@@ -73,8 +73,8 @@ const Dashboard = (props) => {
   const PatientStressedPieResponse = useSelector(
     (state) => state.user.patientStressedPieChartinfo
   );
-  const [startdate, setStartDate] = React.useState(null);
-  const [enddate, setEndDate] = React.useState(null);
+  const [startdate, setStartDate] = React.useState('');
+  const [enddate, setEndDate] = React.useState('');
   const [PatientBarChat, setPatientBarChat] = useState([]);
   const [patientEnrolledBarChat, setpatientEnrolledBarChat] = useState([]);
   const [PatientAgeDelivertBarChat, setPatientAgeDelivertBarChat] = useState(
@@ -97,17 +97,18 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
+    let day = String(date.getDate()).padStart(2, '0') ;
+    let month = String(date.getMonth() + 1).padStart(2, '0');
     let year = date.getFullYear();
     var priorDate = new Date(new Date().setDate(date.getDate() - 30));
-    let Pday = priorDate.getDate();
-    let Pmonth = priorDate.getMonth() + 1;
+    let Pday = String(priorDate.getDate()).padStart(2, '0')
+    let Pmonth = String(priorDate.getMonth() + 1).padStart(2, '0');
     let Pyear = priorDate.getFullYear();
     let currentDate = `${year}-${month}-${day}`;
     let PriorDatevalue = `${Pyear}-${Pmonth}-${Pday}`;
-    setStartDate(PriorDatevalue);
-    setEndDate(currentDate);
+        setStartDate(PriorDatevalue);
+        setEndDate(currentDate);
+   
   }, []);
 
   const _onFindPress = () => {
@@ -273,8 +274,6 @@ const Dashboard = (props) => {
       state: "",
     },
     validationSchema: Yup.object({
-      // startdate: Yup.string().required("startdate is required"),
-      // enddate: Yup.string().required("enddate is required"),
       patientID: Yup.string().required("patientID is required"),
       provider: Yup.string().required("provider is required"),
       zipcode: Yup.string().required("zipcode is required"),
@@ -282,9 +281,7 @@ const Dashboard = (props) => {
       state: Yup.string().required("state is required"),
     }),
     onSubmit: (values) => {
-      // dispatch(signInApi(values));
       _onFindPress();
-      console.log(values, "====");
     },
   });
   return (
@@ -332,27 +329,25 @@ const Dashboard = (props) => {
                       label="From Date"
                       type="date"
                       value={startdate}
-                      defaultValue= {startdate}
-                      sx={{ width: 220 }}
+                      fullWidth
+                      defaultValue={startdate}
                       onChange={(newValue) => {
-                       
                         console.log("sss", newValue.target.value);
                         setStartDate( newValue.target.value);
-
                       }}
+                      
                       InputLabelProps={{
                         shrink: true,
                       }}
                     />
-                               <TextField
+                    <TextField
                       id="date"
                       label="To Date"
                       type="date"
                       value={enddate}
-                      defaultValue= {enddate}
-                      sx={{ width: 220 }}
+                      defaultValue={enddate}
+                      fullWidth
                       onChange={(newValue) => {
-                       
                         console.log("sss", newValue.target.value);
                         setEndDate( newValue.target.value);
 
@@ -372,10 +367,6 @@ const Dashboard = (props) => {
                         formik.touched.patientID && formik.errors.patientID
                       )}
                       fullWidth
-                      // helpertext={
-                      //     formik.touched.patientID &&
-                      //     formik.errors.patientID
-                      // }
                       id="outlined-basic"
                       label="MG Patient Id"
                       variant="outlined"
@@ -394,10 +385,6 @@ const Dashboard = (props) => {
                         formik.touched.provider && formik.errors.provider
                       )}
                       fullWidth
-                      // helpertext={
-                      //     formik.touched.provider &&
-                      //     formik.errors.provider
-                      // }
                       name="provider"
                       onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
@@ -416,10 +403,6 @@ const Dashboard = (props) => {
                         formik.touched.zipcode && formik.errors.zipcode
                       )}
                       fullWidth
-                      // helpertext={
-                      //     formik.touched.zipcode &&
-                      //     formik.errors.zipcode
-                      // }
                       name="zipcode"
                       onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
@@ -445,10 +428,6 @@ const Dashboard = (props) => {
                           formik.errors.insurancepayer
                       )}
                       fullWidth
-                      // helpertext={
-                      //     formik.touched.insurancepayer &&
-                      //     formik.errors.insurancepayer
-                      // }
                       name="insurancepayer"
                       onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
@@ -467,10 +446,6 @@ const Dashboard = (props) => {
                         formik.touched.state && formik.errors.state
                       )}
                       fullWidth
-                      // helpertext={
-                      //     formik.touched.state &&
-                      //     formik.errors.state
-                      // }
                       name="state"
                       onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
@@ -484,13 +459,7 @@ const Dashboard = (props) => {
                       }}
                       sx={{ width: "100%" }}
                     />
-                    {/* <TextField
-                                             id="outlined-basic"
-                                             label="Mode of Delivery"
-                                             variant="outlined"
-                                             select
-                                             sx={{ width: "100%" }}
-                                            /> */}
+                   
                   </Stack>
                   <div className="col-sm-4 col-md-4" style={{ margin: "auto" }}>
                     <a
@@ -516,6 +485,12 @@ const Dashboard = (props) => {
 
       <br />
       <br />
+{PatientAgeDelivertBarChat.length === 0?
+
+<div>No Data found</div>
+
+ :
+      <div className="bar">
       <div className="row" style={{ width: "100%" }}>
         <div className="col-lg-6">
           <div className="card">
@@ -600,7 +575,6 @@ const Dashboard = (props) => {
               datasets={patientLackOfTransportationsPieChart}
             />
 
-            {/* <Bargraph {...props} title = {patientAgeDeliveryResponse?.title} datasets = {PatientAgeDelivertBarChat} /> */}
           </div>
         </div>
       </div>
@@ -627,6 +601,8 @@ const Dashboard = (props) => {
         </div>
         {patientLackOfTransportationsPieChartisLoading ? <LoaderState /> : ""}
       </div>
+      </div>
+      }
     </>
   );
 };

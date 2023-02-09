@@ -484,7 +484,7 @@ const Dashboard = (props) => {
 
             {PatientAgeDelivertBarChat.length === 0 ?
                 <div style={{ textAlign: "center" }}>
-                {isSearchClick ? 
+                {isSearchClick && !patientLackOfTransportationsPieChartisLoading ? 
                     <><img src="/assets/images/nodata.png" alt="No data found" style={{ width: "30%" }} /><h2>No data found</h2></>
                 :
                 <div></div>

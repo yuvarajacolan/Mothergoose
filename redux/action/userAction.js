@@ -1,9 +1,9 @@
 import { errorToast, successToast, warnToast } from "<prefix>/Components/helper";
 import axios from "axios";
 import { APIService } from "redux/api/ApiService";
-import { BASE_URL, patientBarChartUrl, patientEnrolledBarChartUrl, patientAlcoholUsedPieChartUrl, patientEnrolledPieChartUrl, patientSmokePieChartUrl, patientAgeGroupDeliveryPieChartUrl, patientHealthInsurancePieChartUrl, patientLackOfTransportationsPieChartUrl,patientAgeDeliveryBarChartUrl } from "../api/configApiURL";
+import { BASE_URL, patientBarChartUrl, patientEnrolledBarChartUrl, patientAlcoholUsedPieChartUrl, patientEnrolledPieChartUrl, patientSmokePieChartUrl, patientAgeGroupDeliveryPieChartUrl, patientHealthInsurancePieChartUrl, patientLackOfTransportationsPieChartUrl,patientAgeDeliveryBarChartUrl,patientStressedPieChartUrl } from "../api/configApiURL";
 import {
-    patientBarAction, patientEnrolledBarAction, patientAlcoholUsedPieChartAction, patientEnrolledPieChartAction, patientSmokeUsedPieChartAction, patientAgeDeliveryBarChartAction, patientAgeGroupDeliveryPieChartAction, patientHealthInsurancePieChartAction, patientLackOfTransportationsPieChartAction
+    patientBarAction, patientEnrolledBarAction, patientAlcoholUsedPieChartAction, patientEnrolledPieChartAction, patientSmokeUsedPieChartAction, patientAgeDeliveryBarChartAction, patientAgeGroupDeliveryPieChartAction, patientHealthInsurancePieChartAction, patientLackOfTransportationsPieChartAction, patientStressedPieChartAction
 } from "../slice/userSlice";
 
 export function postPatientBarChatApi(params) {

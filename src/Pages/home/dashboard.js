@@ -61,13 +61,7 @@ const Dashboard = (props) => {
     const [patientSmokePieChart, setPatientSmokePieChart] = useState([])
 
     
-
-    
-
-    
-
-
-     useEffect(() => {
+    useEffect(() => {
         const reqBody = {
             "fromDate": "2022-02-01",
             "toDate": "2023-01-31"
@@ -125,7 +119,7 @@ const Dashboard = (props) => {
         }
        }, [patientAgeDeliveryResponse])
 
-       useEffect(() => {
+    useEffect(() => {
         console.log('patientLackOfTransportationsPieResponse',patientLackOfTransportationsPieResponse)
         let dataPoints = []
         if(patientLackOfTransportationsPieResponse?.data){
@@ -140,7 +134,7 @@ const Dashboard = (props) => {
         }
        }, [patientLackOfTransportationsPieResponse])
 
-       useEffect(() => {
+    useEffect(() => {
         console.log('patientAlcoholUsedPieResponse',patientAlcoholUsedPieResponse)
         let dataPoints = []
         if(patientAlcoholUsedPieResponse?.data){
@@ -154,7 +148,8 @@ const Dashboard = (props) => {
             setpatientAlcoholUsedPieChart(dataPoints)
         }
        }, [patientAlcoholUsedPieResponse])
-       useEffect(() => {
+
+    useEffect(() => {
         console.log('PatientPieResponse',PatientPieResponse)
         let dataPoints = []
         if(PatientPieResponse?.data){
@@ -168,7 +163,8 @@ const Dashboard = (props) => {
             setpatientPieChart(dataPoints)
         }
        }, [PatientPieResponse])
-       useEffect(() => {
+  
+    useEffect(() => {
         console.log('PatientSmokeUsedPieResponse',PatientSmokeUsedPieResponse)
         let dataPoints = []
         if(PatientSmokeUsedPieResponse?.data){
@@ -182,9 +178,6 @@ const Dashboard = (props) => {
             setPatientSmokePieChart(dataPoints)
         }
        }, [PatientSmokeUsedPieResponse])
-
-
-       
 
 
     const formik = useFormik({
@@ -463,25 +456,24 @@ const Dashboard = (props) => {
                 </div>
             </div>
 
-            <br />
+            
             <br />
             <br />
 
             <br />
             <br />
             <div className="row" style={{ width: "100%" }}>
-                
-                <div className="col-lg-12">
+                <div className="col-lg-6">
                     <div className="card">
                     <Bargraph {...props} title = {patientAgeDeliveryResponse?.title} datasets = {PatientAgeDelivertBarChat} />
                     </div>
                 </div>
+                <div className="col-lg-6">
+                    <div className="card">
+                    <PieChart {...props} title = {patientAlcoholUsedPieResponse?.title} datasets = {patientAlcoholUsedPieChart} />
+                    </div>
+                </div>
             </div>
-            
-            <br />
-            <br />
-            <br />
-
             <br />
             <br />
             <div className="row" style={{ width: "100%" }}>

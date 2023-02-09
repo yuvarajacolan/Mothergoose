@@ -13,14 +13,14 @@ export function postPatientBarChatApi(params) {
         APIService("POST", patientBarChartUrl, params)
             .then((res) => {
                 if (res.status === "success") {
-                    dispatch(patientBarAction({ isLoading: false, response: res.data }));
+                    dispatch(patientBarAction({ isLoading: false, response: res.data,isSuccess:true}));
                 } else {
-                    dispatch(patientBarAction({ isLoading: false }));
+                    dispatch(patientBarAction({ isLoading: false,isSuccess:false }));
                     warnToast("Failed to fetch my data");
                 }
             })
             .catch((e) => {
-                dispatch(patientBarAction({ isLoading: false }));
+                dispatch(patientBarAction({ isLoading: false,isSuccess:false }));
                 errorToast("Failed to fetch my data");
                 console.log("Error Occured", e);
             });

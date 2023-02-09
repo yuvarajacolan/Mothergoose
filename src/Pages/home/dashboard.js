@@ -28,9 +28,44 @@ const Dashboard = (props) => {
     const patientBarResponse = useSelector(
         (state) => state.user.patientBarChartinfo
       );
+      const patientEnrolledBarResponse = useSelector(
+        (state) => state.user.patientEnrolledBarChartinfo
+      );
+      
+      const patientAgeDeliveryResponse = useSelector(
+        (state) => state.user.patientAgeDeliveryBarChartinfo
+      );
+      const patientLackOfTransportationsPieResponse = useSelector(
+        (state) => state.user.patientLackOfTransportationsPieChartinfo
+      );
+      const patientAlcoholUsedPieResponse = useSelector(
+        (state) => state.user.patientAlcoholUsedPieChartinfo
+      );
+      const PatientPieResponse = useSelector(
+        (state) => state.user.patientEnrolledPieChartinfo
+      );
+      const PatientSmokeUsedPieResponse = useSelector(
+        (state) => state.user.patientSmokeUsedPieChartinfo
+      );
+      
+
+      
     const [startdate, setStartDate] = React.useState(null);
     const [enddate, setEndDate] = React.useState(null);
     const [PatientBarChat, setPatientBarChat] = useState([])
+    const [patientEnrolledBarChat, setpatientEnrolledBarChat] = useState([])
+    const [PatientAgeDelivertBarChat, setPatientAgeDelivertBarChat] = useState([])
+    const [patientLackOfTransportationsPieChart, setpatientLackOfTransportationsPieChart] = useState([])
+    const [patientAlcoholUsedPieChart, setpatientAlcoholUsedPieChart] = useState([])
+    const [patientPieChart, setpatientPieChart] = useState([])
+    const [patientSmokePieChart, setPatientSmokePieChart] = useState([])
+
+    
+
+    
+
+    
+
 
      useEffect(() => {
         const reqBody = {
@@ -39,15 +74,15 @@ const Dashboard = (props) => {
         }
         console.log("HELLO WROLD", reqBody)
         dispatch(postPatientBarChatApi(reqBody))
-        // dispatch(postPatientEnrolledBarChatApi(reqBody))
-        // dispatch(postPatientAlcoholUsedPieChartApi(reqBody))
-        // dispatch(postPatientPieChartApi(reqBody))
-        // dispatch(postPatientSmokeUsedPieChartApi(reqBody))
-        // dispatch(postPatientAgeDeliveryBarChartApi(reqBody))
+        dispatch(postPatientEnrolledBarChatApi(reqBody))
+         dispatch(postPatientAlcoholUsedPieChartApi(reqBody))
+        dispatch(postPatientPieChartApi(reqBody))
+        dispatch(postPatientSmokeUsedPieChartApi(reqBody))
+        dispatch(postPatientAgeDeliveryBarChartApi(reqBody))
         // dispatch(postPatientAgeGroupDeliveryPieChartApi(reqBody))
         // dispatch(postPatientHealthInsurancePieChartApi(reqBody))
         // dispatch(postPatientStressedPieChartApi(reqBody))
-        // dispatch(postPatientLackOfTransportationsPieChartApi(reqBody))
+        dispatch(postPatientLackOfTransportationsPieChartApi(reqBody))
 
     }, [])
 
@@ -59,15 +94,97 @@ const Dashboard = (props) => {
             dataPoints.push(
                 { label: item,  y: patientBarResponse?.data?.datasets[0]?.data[i]},
             )
-    
          })
-         console.log('dataPoints',dataPoints)
          setPatientBarChat(dataPoints)
      }
-
     }, [patientBarResponse])
     
+    useEffect(() => {
+        console.log('patientEnrolledBarResponse',patientEnrolledBarResponse)
+        let dataPoints = []
+        if(patientEnrolledBarResponse?.data){
+            patientEnrolledBarResponse?.data.labels?.map((item,i)=>{
+               dataPoints.push(
+                   { label: item,  y: patientEnrolledBarResponse?.data?.datasets[0]?.data[i]},
+               )
+            })
+            setpatientEnrolledBarChat(dataPoints)
+        }
+       }, [patientEnrolledBarResponse])
 
+    useEffect(() => {
+        console.log('patientBarResponse',patientAgeDeliveryResponse)
+        let dataPoints = []
+        if(patientAgeDeliveryResponse?.data){
+            patientAgeDeliveryResponse?.data.labels?.map((item,i)=>{
+               dataPoints.push(
+                   { label: item,  y: patientAgeDeliveryResponse?.data?.datasets[0]?.data[i]},
+               )
+            })
+            setPatientAgeDelivertBarChat(dataPoints)
+        }
+       }, [patientAgeDeliveryResponse])
+
+       useEffect(() => {
+        console.log('patientLackOfTransportationsPieResponse',patientLackOfTransportationsPieResponse)
+        let dataPoints = []
+        if(patientLackOfTransportationsPieResponse?.data){
+            patientLackOfTransportationsPieResponse?.data.labels?.map((item,i)=>{
+               dataPoints.push(
+                   { name: item,  y: patientLackOfTransportationsPieResponse?.data?.datasets[0]?.data[i]},
+               )
+            })
+            console.log('dataPoints',dataPoints)
+
+            setpatientLackOfTransportationsPieChart(dataPoints)
+        }
+       }, [patientLackOfTransportationsPieResponse])
+
+       useEffect(() => {
+        console.log('patientAlcoholUsedPieResponse',patientAlcoholUsedPieResponse)
+        let dataPoints = []
+        if(patientAlcoholUsedPieResponse?.data){
+            patientAlcoholUsedPieResponse?.data.labels?.map((item,i)=>{
+               dataPoints.push(
+                   { name: item,  y: patientAlcoholUsedPieResponse?.data?.datasets[0]?.data[i]},
+               )
+            })
+            console.log('dataPoints',dataPoints)
+            
+            setpatientAlcoholUsedPieChart(dataPoints)
+        }
+       }, [patientAlcoholUsedPieResponse])
+       useEffect(() => {
+        console.log('PatientPieResponse',PatientPieResponse)
+        let dataPoints = []
+        if(PatientPieResponse?.data){
+            PatientPieResponse?.data.labels?.map((item,i)=>{
+               dataPoints.push(
+                   { name: item,  y: PatientPieResponse?.data?.datasets[0]?.data[i]},
+               )
+            })
+            console.log('dataPoints',dataPoints)
+            
+            setpatientPieChart(dataPoints)
+        }
+       }, [PatientPieResponse])
+       useEffect(() => {
+        console.log('PatientSmokeUsedPieResponse',PatientSmokeUsedPieResponse)
+        let dataPoints = []
+        if(PatientSmokeUsedPieResponse?.data){
+            PatientSmokeUsedPieResponse?.data.labels?.map((item,i)=>{
+               dataPoints.push(
+                   { name: item,  y: PatientSmokeUsedPieResponse?.data?.datasets[0]?.data[i]},
+               )
+            })
+            console.log('dataPoints',dataPoints)
+            
+            setPatientSmokePieChart(dataPoints)
+        }
+       }, [PatientSmokeUsedPieResponse])
+
+
+       
 
 
     const formik = useFormik({
@@ -355,12 +472,12 @@ const Dashboard = (props) => {
             <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-6">
                     <div className="card">
-                        <PieChart />
+                    <PieChart {...props} title = {patientAlcoholUsedPieResponse?.title} datasets = {patientAlcoholUsedPieChart} />
                     </div>
                 </div>
                 <div className="col-lg-6">
                     <div className="card">
-                        <PieChart />
+                    <PieChart {...props} title = {PatientPieResponse?.title} datasets = {patientPieChart} />
                     </div>
                 </div>
             </div>
@@ -369,12 +486,13 @@ const Dashboard = (props) => {
             <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-6">
                     <div className="card">
-                        <PieChart />
+                    <PieChart {...props} title = {PatientSmokeUsedPieResponse?.title} datasets = {patientSmokePieChart} />
                     </div>
                 </div>
                 <div className="col-lg-6">
                     <div className="card">
-                        <PieChart />
+                    <Bargraph {...props} title = {patientEnrolledBarResponse?.title} datasets = {patientEnrolledBarChat} />
+                        
                     </div>
                 </div>
             </div>
@@ -388,7 +506,7 @@ const Dashboard = (props) => {
                 </div>
                 <div className="col-lg-6">
                     <div className="card">
-                    <Bargraph {...props} title = {patientBarResponse?.title} datasets = {PatientBarChat} />
+                    <Bargraph {...props} title = {patientAgeDeliveryResponse?.title} datasets = {PatientAgeDelivertBarChat} />
                     </div>
                 </div>
             </div>
@@ -397,12 +515,13 @@ const Dashboard = (props) => {
             <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-6">
                     <div className="card">
-                        <PieChart />
+                    <PieChart {...props} title = {patientLackOfTransportationsPieResponse?.title} datasets = {patientLackOfTransportationsPieChart} />
                     </div>
                 </div>
                 <div className="col-lg-6">
                     <div className="card">
-                        <PieChart />
+                    
+                        <PieChart {...props} title = {patientLackOfTransportationsPieResponse?.title} datasets = {patientLackOfTransportationsPieChart} />
                     </div>
                 </div>
             </div>

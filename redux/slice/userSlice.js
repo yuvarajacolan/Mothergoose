@@ -5,6 +5,7 @@ const userSlice = createSlice({
     initialState: {
         patientBarChartinfo: {},
         patientBarChartisLoading: false,
+        patientBarChartisSuccess:false,
         patientEnrolledBarChartinfo: {},
         patientEnrolledBarChartisLoading: false,
         patientAlcoholUsedPieChartinfo: {},
@@ -29,6 +30,7 @@ const userSlice = createSlice({
         patientBarAction: (state, { payload }) => {
             state.patientBarChartinfo = payload.response;
             state.patientBarChartisLoading = payload.isLoading;
+            state.patientBarChartisSuccess = payload.isSuccess
         },
         patientEnrolledBarAction: (state, { payload }) => {
             state.patientEnrolledBarChartinfo = payload.response;

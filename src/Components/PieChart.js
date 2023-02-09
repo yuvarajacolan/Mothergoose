@@ -3,16 +3,20 @@ import CanvasJSReact from './canvasjs.react';
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const PieChart = () => {
+const PieChart = (props) => {
+    console.log('datasets',props.datasets)
+
     const options = {
         animationEnabled: true,
         title: {
-            text: "Customer Satisfaction"
+            text:props?.title,
+            fontStyle: "normal",
+			fontSize: 20,
         },
         subtitles: [{
             text: "71% Positive",
             verticalAlign: "center",
-            fontSize: 24,
+            fontSize: 16,
             dockInsidePlotArea: true
         }],
         data: [{
@@ -20,13 +24,15 @@ const PieChart = () => {
             showInLegend: true,
             indexLabel: "{name}: {y}",
             yValueFormatString: "#,###'%'",
-            dataPoints: [
-                { name: "Unsatisfied", y: 5 },
-                { name: "Very Unsatisfied", y: 31 },
-                { name: "Very Satisfied", y: 40 },
-                { name: "Satisfied", y: 17 },
-                { name: "Neutral", y: 7 }
-            ]
+            dataPoints: props?.datasets,
+
+            // dataPoints: [
+            //     { name: "Unsatisfied", y: 5 },
+            //     { name: "Very Unsatisfied", y: 31 },
+            //     { name: "Very Satisfied", y: 40 },
+            //     { name: "Satisfied", y: 17 },
+            //     { name: "Neutral", y: 7 }
+            // ]
         }]
     }
     return (

@@ -17,7 +17,9 @@ export default class Bargraph extends Component {
 
 		const options = {
 			title: {
-				text: this.props.title
+				text: this.props.title,
+				fontStyle: "normal",
+				fontSize: 20,
 			},
 			data: [
 			{

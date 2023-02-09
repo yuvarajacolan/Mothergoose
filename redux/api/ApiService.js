@@ -57,7 +57,7 @@ console.log("url",url)
     .catch((e) => {
         console.log('ErrorinAPIservice',e)
       if (e.message === "Network Error") {
-        //router.push("/common/network-issue");
+        router.push("/common/network-issue");
       }
       const refreshToken =
         typeof window !== "undefined"
@@ -76,7 +76,7 @@ console.log("url",url)
       if (userId === null || undefined || "") {
         router.push("/auth/login");
       } else {
-        //router.push("/common/internet-issue");
+        router.push("/common/internet-issue");
       }
     });
 };

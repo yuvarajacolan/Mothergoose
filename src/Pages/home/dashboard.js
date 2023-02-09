@@ -21,13 +21,13 @@ import { postPatientBarChatApi,postPatientEnrolledBarChatApi,postPatientAlcoholU
 const Bargraph = dynamic(() => import("../../components/Bargraph"), { ssr: false });
 const PieChart = dynamic(() => import("../../components/PieChart"), { ssr: false });
 
-
-
 const Dashboard = (props) => {
-    const dispatch = useDispatch();
-    const patientBarResponse = useSelector(
+      const dispatch = useDispatch();
+
+      const patientBarResponse = useSelector(
         (state) => state.user.patientBarChartinfo
       );
+
       const patientEnrolledBarResponse = useSelector(
         (state) => state.user.patientEnrolledBarChartinfo
       );
@@ -35,24 +35,31 @@ const Dashboard = (props) => {
       const patientAgeDeliveryResponse = useSelector(
         (state) => state.user.patientAgeDeliveryBarChartinfo
       );
+
       const patientLackOfTransportationsPieResponse = useSelector(
         (state) => state.user.patientLackOfTransportationsPieChartinfo
       );
+
       const patientAlcoholUsedPieResponse = useSelector(
         (state) => state.user.patientAlcoholUsedPieChartinfo
       );
+
       const PatientPieResponse = useSelector(
         (state) => state.user.patientEnrolledPieChartinfo
       );
+
       const PatientSmokeUsedPieResponse = useSelector(
         (state) => state.user.patientSmokeUsedPieChartinfo
       );
+
       const PatientAgeGroupDeliveryPieResponse = useSelector(
         (state) => state.user.patientAgeGroupDeliveryPieChartinfo
       );
+
       const PatientHealthInsurancePieResponse = useSelector(
         (state) => state.user.patientHealthInsurancePieChartinfo
       );
+
       const PatientStressedPieResponse = useSelector(
         (state) => state.user.patientStressedPieChartinfo
       );
@@ -73,16 +80,7 @@ const Dashboard = (props) => {
     const [patientHealthInsurancePieChart, setpatientHealthInsurancePieChart] = useState([])
     const [patientStressedPieChart, setPatientStressedPieResponse] = useState([])
 
-
-    
-    
-
-    
-
-    
-
-
-     useEffect(() => {
+    useEffect(() => {
         const reqBody = {
             "fromDate": "2022-02-01",
             "toDate": "2023-01-31"
@@ -112,7 +110,7 @@ const Dashboard = (props) => {
      }
     }, [patientBarResponse])
     
-    useEffect(() => {
+       useEffect(() => {
         let dataPoints = []
         if(patientEnrolledBarResponse?.data){
             patientEnrolledBarResponse?.data.labels?.map((item,i)=>{
@@ -124,7 +122,7 @@ const Dashboard = (props) => {
         }
        }, [patientEnrolledBarResponse])
 
-    useEffect(() => {
+       useEffect(() => {
         let dataPoints = []
         if(patientAgeDeliveryResponse?.data){
             patientAgeDeliveryResponse?.data.labels?.map((item,i)=>{
@@ -161,6 +159,7 @@ const Dashboard = (props) => {
             setpatientAlcoholUsedPieChart(dataPoints)
         }
        }, [patientAlcoholUsedPieResponse])
+
        useEffect(() => {
         let dataPoints = []
         if(PatientPieResponse?.data){
@@ -173,6 +172,7 @@ const Dashboard = (props) => {
             setpatientPieChart(dataPoints)
         }
        }, [PatientPieResponse])
+
        useEffect(() => {
         let dataPoints = []
         if(PatientSmokeUsedPieResponse?.data){
@@ -185,6 +185,7 @@ const Dashboard = (props) => {
             setPatientSmokePieChart(dataPoints)
         }
        }, [PatientSmokeUsedPieResponse])
+
        useEffect(() => {
         let dataPoints = []
         if(PatientAgeGroupDeliveryPieResponse?.data){
@@ -196,6 +197,7 @@ const Dashboard = (props) => {
             setPatientAgeGroupDeliveryPieChart(dataPoints)
         }
        }, [PatientAgeGroupDeliveryPieResponse])
+
        useEffect(() => {
         let dataPoints = []
         if(PatientHealthInsurancePieResponse?.data){
@@ -209,8 +211,6 @@ const Dashboard = (props) => {
         }
        }, [PatientHealthInsurancePieResponse])
        
-
-
     const formik = useFormik({
         // enableReinitialize: true,
         initialValues: {

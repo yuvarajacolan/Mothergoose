@@ -57,8 +57,8 @@ const Login = () => {
     onSubmit: (data) => {
 
       const reqBody = {
-        username: "mg_admin",
-        password: "Admin@123"
+        username: data.username,
+        password: data.password
       }
      console.log("HELLO WROLD", reqBody)
      dispatch(signInApi(reqBody))

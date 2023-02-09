@@ -369,7 +369,7 @@ const Dashboard = (props) => {
                                             )}
                                             fullWidth
                                             id="outlined-basic"
-                                            label="MG Patient Id"
+                                            label="Patient Id"
                                             variant="outlined"
                                             InputProps={{
                                                 endAdornment: <BadgeIcon />,
@@ -410,7 +410,7 @@ const Dashboard = (props) => {
                                             type="text"
                                             value={formik.values.zipcode}
                                             id="outlined-basic"
-                                            label="Enter You ZIP code"
+                                            label="ZIP code"
                                             variant="outlined"
                                             InputProps={{
                                                 endAdornment: <LocationOnIcon />,

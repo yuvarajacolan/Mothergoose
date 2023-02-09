@@ -28,6 +28,8 @@ import {
     postPatientLackOfTransportationsPieChartApi,
 } from "redux/action/userAction";
 import LoaderState from "<prefix>/Components/Loader";
+import LogoutHandlerModal from "<prefix>/Components/logOutModal";
+import { router } from "next/router";
 // import Nodata from "../../assets/images/nodata.png"
 
 const Bargraph = dynamic(() => import("../../components/Bargraph"), {
@@ -96,6 +98,7 @@ const Dashboard = (props) => {
     const [patientStressedPieChart, setPatientStressedPieResponse] = useState([]);
 
     useEffect(() => {
+        checkingForLogin()
         const date = new Date();
         let day = String(date.getDate()).padStart(2, '0');
         let month = String(date.getMonth() + 1).padStart(2, '0');
@@ -111,6 +114,13 @@ const Dashboard = (props) => {
 
     }, []);
 
+    const checkingForLogin = () => {
+        const accessToken = typeof window !== "undefined" ? sessionStorage.getItem("accessToken") : "";
+        console.log("checkingForLogin",accessToken)
+        if(accessToken === null) {
+            router.push("/auth/login")
+        }
+    }
     const _onFindPress = () => {
         const reqBody = {
             fromDate: startdate,
@@ -484,11 +494,11 @@ const Dashboard = (props) => {
 
             {PatientAgeDelivertBarChat.length === 0 ?
                 <div style={{ textAlign: "center" }}>
-                {isSearchClick && !patientLackOfTransportationsPieChartisLoading ? 
-                    <><img src="/assets/images/nodata.png" alt="No data found" style={{ width: "30%" }} /><h2>No data found</h2></>
-                :
-                <div></div>
-                } 
+                    {isSearchClick && !patientLackOfTransportationsPieChartisLoading ?
+                        <><img src="/assets/images/nodata.png" alt="No data found" style={{ width: "30%" }} /><h2>No data found</h2></>
+                        :
+                        <div></div>
+                    }
                 </div>
                 :
 
@@ -610,6 +620,7 @@ const Dashboard = (props) => {
                     </div>
                 </div>
             }
+
         </>
     );
 };

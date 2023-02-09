@@ -338,3 +338,46 @@ form {
   .canvasjs-chart-credit {
 	display: none !important;
   }
+
+  .reject-btn {
+	background-color: #f62bcc !important;
+	color: white !important;
+	width: 90px !important;
+  }
+  
+  .reject-btn:hover {
+	background-color: #962c3e !important;
+	color: rgb(192, 192, 192) !important;
+	width: 90px !important;
+  }	 
+   .box-stat-Del {
+	position: absolute;
+	font-family: "Oxygen", sans-serif;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white !important;
+	/* border: 1px solid rgba(255, 255, 255, 40%) !important; */
+	color: rgba(255, 255, 255, 40%);
+	box-shadow: 24;
+	padding: 20px 30px;
+	border: none;
+	border-radius: 10px;
+	/* width: 45% !important ; */
+	font-weight: bolder;
+	padding-bottom: 50px !important;
+	/* padding: 50px 0px !important; */
+	padding: 50px 47px !important;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+	.box-stat-Del {
+	  padding: 30px !important;
+	  width: 300px !important;
+	}
+	.box-stat-Del h2 {
+	  padding: 0px !important;
+	}
+  }
+  .box-stat-Del h2 {
+	padding: 0px 0px 1rem 0px !important;
+  }

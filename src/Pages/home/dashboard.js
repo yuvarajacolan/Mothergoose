@@ -78,9 +78,8 @@ const Dashboard = (props) => {
     const [enddate, setEndDate] = React.useState('');
     const [PatientBarChat, setPatientBarChat] = useState([]);
     const [patientEnrolledBarChat, setpatientEnrolledBarChat] = useState([]);
-    const [PatientAgeDelivertBarChat, setPatientAgeDelivertBarChat] = useState(
-        []
-    );
+    const [PatientAgeDelivertBarChat, setPatientAgeDelivertBarChat] = useState([]);
+    const [isSearchClick, setisSearchClick] = useState(false)
     const [
         patientLackOfTransportationsPieChart,
         setpatientLackOfTransportationsPieChart,
@@ -117,6 +116,7 @@ const Dashboard = (props) => {
             fromDate: startdate,
             toDate: enddate,
         };
+        setisSearchClick(true)
         dispatch(postPatientBarChatApi(reqBody));
         dispatch(postPatientEnrolledBarChatApi(reqBody));
         dispatch(postPatientAlcoholUsedPieChartApi(reqBody));
@@ -483,13 +483,13 @@ const Dashboard = (props) => {
 
 
             {PatientAgeDelivertBarChat.length === 0 ?
-
                 <div style={{ textAlign: "center" }}>
-                    <img src="/assets/images/nodata.png" alt="No data found" style={{ width: "30%" }} />
-                    <h2>No data found</h2>
-
+                {isSearchClick ? 
+                    <><img src="/assets/images/nodata.png" alt="No data found" style={{ width: "30%" }} /><h2>No data found</h2></>
+                :
+                <div></div>
+                } 
                 </div>
-
                 :
 
                 <div className="bar">

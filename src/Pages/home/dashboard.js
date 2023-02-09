@@ -47,6 +47,16 @@ const Dashboard = (props) => {
       const PatientSmokeUsedPieResponse = useSelector(
         (state) => state.user.patientSmokeUsedPieChartinfo
       );
+      const PatientAgeGroupDeliveryPieResponse = useSelector(
+        (state) => state.user.patientAgeGroupDeliveryPieChartinfo
+      );
+      const PatientHealthInsurancePieResponse = useSelector(
+        (state) => state.user.patientHealthInsurancePieChartinfo
+      );
+      const PatientStressedPieResponse = useSelector(
+        (state) => state.user.patientStressedPieChartinfo
+      );
+      
       
 
       
@@ -59,7 +69,12 @@ const Dashboard = (props) => {
     const [patientAlcoholUsedPieChart, setpatientAlcoholUsedPieChart] = useState([])
     const [patientPieChart, setpatientPieChart] = useState([])
     const [patientSmokePieChart, setPatientSmokePieChart] = useState([])
+    const [patientAgeGroupDeliveryPieChart, setPatientAgeGroupDeliveryPieChart] = useState([])
+    const [patientHealthInsurancePieChart, setpatientHealthInsurancePieChart] = useState([])
+    const [patientStressedPieChart, setPatientStressedPieResponse] = useState([])
 
+
+    
     
 
     
@@ -79,8 +94,8 @@ const Dashboard = (props) => {
         dispatch(postPatientPieChartApi(reqBody))
         dispatch(postPatientSmokeUsedPieChartApi(reqBody))
         dispatch(postPatientAgeDeliveryBarChartApi(reqBody))
-        // dispatch(postPatientAgeGroupDeliveryPieChartApi(reqBody))
-        // dispatch(postPatientHealthInsurancePieChartApi(reqBody))
+        dispatch(postPatientAgeGroupDeliveryPieChartApi(reqBody))
+        dispatch(postPatientHealthInsurancePieChartApi(reqBody))
         // dispatch(postPatientStressedPieChartApi(reqBody))
         dispatch(postPatientLackOfTransportationsPieChartApi(reqBody))
 
@@ -182,6 +197,35 @@ const Dashboard = (props) => {
             setPatientSmokePieChart(dataPoints)
         }
        }, [PatientSmokeUsedPieResponse])
+       useEffect(() => {
+        console.log('PatientAgeGroupDeliveryPieResponse',PatientAgeGroupDeliveryPieResponse)
+        let dataPoints = []
+        if(PatientAgeGroupDeliveryPieResponse?.data){
+            PatientAgeGroupDeliveryPieResponse?.data.labels?.map((item,i)=>{
+               dataPoints.push(
+                   { name: item,  y: PatientAgeGroupDeliveryPieResponse?.data?.datasets[0]?.data[i]},
+               )
+            })
+            console.log('dataPoints',dataPoints)
+            
+            setPatientAgeGroupDeliveryPieChart(dataPoints)
+        }
+       }, [PatientAgeGroupDeliveryPieResponse])
+       useEffect(() => {
+        console.log('PatientHealthInsurancePieResponse',PatientHealthInsurancePieResponse)
+        let dataPoints = []
+        if(PatientHealthInsurancePieResponse?.data){
+            PatientHealthInsurancePieResponse?.data.labels?.map((item,i)=>{
+               dataPoints.push(
+                   { name: item,  y: PatientHealthInsurancePieResponse?.data?.datasets[0]?.data[i]},
+               )
+            })
+            console.log('dataPoints',dataPoints)
+            
+            setpatientHealthInsurancePieChart(dataPoints)
+        }
+       }, [PatientHealthInsurancePieResponse])
+       
 
 
        
@@ -532,13 +576,13 @@ const Dashboard = (props) => {
             <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-6">
                     <div className="card">
-                    <PieChart {...props} title = {patientLackOfTransportationsPieResponse?.title} datasets = {patientLackOfTransportationsPieChart} />
+                    <PieChart {...props} title = {PatientAgeGroupDeliveryPieResponse?.title} datasets = {patientAgeGroupDeliveryPieChart} />
                     </div>
                 </div>
                 <div className="col-lg-6">
                     <div className="card">
                     
-                        <PieChart {...props} title = {patientLackOfTransportationsPieResponse?.title} datasets = {patientLackOfTransportationsPieChart} />
+                        <PieChart {...props} title = {PatientHealthInsurancePieResponse?.title} datasets = {patientHealthInsurancePieChart} />
                     </div>
                 </div>
             </div>

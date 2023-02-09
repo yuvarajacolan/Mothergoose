@@ -87,10 +87,9 @@ const Dashboard = (props) => {
             "fromDate": "2022-02-01",
             "toDate": "2023-01-31"
         }
-        console.log("HELLO WROLD", reqBody)
         dispatch(postPatientBarChatApi(reqBody))
         dispatch(postPatientEnrolledBarChatApi(reqBody))
-         dispatch(postPatientAlcoholUsedPieChartApi(reqBody))
+        dispatch(postPatientAlcoholUsedPieChartApi(reqBody))
         dispatch(postPatientPieChartApi(reqBody))
         dispatch(postPatientSmokeUsedPieChartApi(reqBody))
         dispatch(postPatientAgeDeliveryBarChartApi(reqBody))
@@ -102,7 +101,6 @@ const Dashboard = (props) => {
     }, [])
 
     useEffect(() => {
-     console.log('patientBarResponse',patientBarResponse)
      let dataPoints = []
      if(patientBarResponse?.data){
         patientBarResponse?.data.labels?.map((item,i)=>{
@@ -115,7 +113,6 @@ const Dashboard = (props) => {
     }, [patientBarResponse])
     
     useEffect(() => {
-        console.log('patientEnrolledBarResponse',patientEnrolledBarResponse)
         let dataPoints = []
         if(patientEnrolledBarResponse?.data){
             patientEnrolledBarResponse?.data.labels?.map((item,i)=>{
@@ -128,7 +125,6 @@ const Dashboard = (props) => {
        }, [patientEnrolledBarResponse])
 
     useEffect(() => {
-        console.log('patientBarResponse',patientAgeDeliveryResponse)
         let dataPoints = []
         if(patientAgeDeliveryResponse?.data){
             patientAgeDeliveryResponse?.data.labels?.map((item,i)=>{
@@ -141,7 +137,6 @@ const Dashboard = (props) => {
        }, [patientAgeDeliveryResponse])
 
        useEffect(() => {
-        console.log('patientLackOfTransportationsPieResponse',patientLackOfTransportationsPieResponse)
         let dataPoints = []
         if(patientLackOfTransportationsPieResponse?.data){
             patientLackOfTransportationsPieResponse?.data.labels?.map((item,i)=>{
@@ -149,14 +144,12 @@ const Dashboard = (props) => {
                    { name: item,  y: patientLackOfTransportationsPieResponse?.data?.datasets[0]?.data[i]},
                )
             })
-            console.log('dataPoints',dataPoints)
 
             setpatientLackOfTransportationsPieChart(dataPoints)
         }
        }, [patientLackOfTransportationsPieResponse])
 
        useEffect(() => {
-        console.log('patientAlcoholUsedPieResponse',patientAlcoholUsedPieResponse)
         let dataPoints = []
         if(patientAlcoholUsedPieResponse?.data){
             patientAlcoholUsedPieResponse?.data.labels?.map((item,i)=>{
@@ -164,13 +157,11 @@ const Dashboard = (props) => {
                    { name: item,  y: patientAlcoholUsedPieResponse?.data?.datasets[0]?.data[i]},
                )
             })
-            console.log('dataPoints',dataPoints)
             
             setpatientAlcoholUsedPieChart(dataPoints)
         }
        }, [patientAlcoholUsedPieResponse])
        useEffect(() => {
-        console.log('PatientPieResponse',PatientPieResponse)
         let dataPoints = []
         if(PatientPieResponse?.data){
             PatientPieResponse?.data.labels?.map((item,i)=>{
@@ -178,13 +169,11 @@ const Dashboard = (props) => {
                    { name: item,  y: PatientPieResponse?.data?.datasets[0]?.data[i]},
                )
             })
-            console.log('dataPoints',dataPoints)
             
             setpatientPieChart(dataPoints)
         }
        }, [PatientPieResponse])
        useEffect(() => {
-        console.log('PatientSmokeUsedPieResponse',PatientSmokeUsedPieResponse)
         let dataPoints = []
         if(PatientSmokeUsedPieResponse?.data){
             PatientSmokeUsedPieResponse?.data.labels?.map((item,i)=>{
@@ -192,13 +181,11 @@ const Dashboard = (props) => {
                    { name: item,  y: PatientSmokeUsedPieResponse?.data?.datasets[0]?.data[i]},
                )
             })
-            console.log('dataPoints',dataPoints)
             
             setPatientSmokePieChart(dataPoints)
         }
        }, [PatientSmokeUsedPieResponse])
        useEffect(() => {
-        console.log('PatientAgeGroupDeliveryPieResponse',PatientAgeGroupDeliveryPieResponse)
         let dataPoints = []
         if(PatientAgeGroupDeliveryPieResponse?.data){
             PatientAgeGroupDeliveryPieResponse?.data.labels?.map((item,i)=>{
@@ -206,13 +193,10 @@ const Dashboard = (props) => {
                    { name: item,  y: PatientAgeGroupDeliveryPieResponse?.data?.datasets[0]?.data[i]},
                )
             })
-            console.log('dataPoints',dataPoints)
-            
             setPatientAgeGroupDeliveryPieChart(dataPoints)
         }
        }, [PatientAgeGroupDeliveryPieResponse])
        useEffect(() => {
-        console.log('PatientHealthInsurancePieResponse',PatientHealthInsurancePieResponse)
         let dataPoints = []
         if(PatientHealthInsurancePieResponse?.data){
             PatientHealthInsurancePieResponse?.data.labels?.map((item,i)=>{
@@ -220,7 +204,6 @@ const Dashboard = (props) => {
                    { name: item,  y: PatientHealthInsurancePieResponse?.data?.datasets[0]?.data[i]},
                )
             })
-            console.log('dataPoints',dataPoints)
             
             setpatientHealthInsurancePieChart(dataPoints)
         }

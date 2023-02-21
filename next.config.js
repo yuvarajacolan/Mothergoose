@@ -10,6 +10,9 @@ const nextConfig = {
     loader: "imgix",
     path: "",
   },
+  experimental: {
+    appDir: true,
+  },
 
   // webpack(config, options) {
   //   config.module.rules.push({

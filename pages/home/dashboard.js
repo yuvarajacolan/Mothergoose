@@ -32,10 +32,10 @@ import LogoutHandlerModal from "<prefix>/Components/logOutModal";
 import { router } from "next/router";
 // import Nodata from "../../assets/images/nodata.png"
 
-const Bargraph = dynamic(() => import("../../components/Bargraph"), {
+const Bargraph = dynamic(() => import("../../src/components/Bargraph"), {
     ssr: false,
 });
-const PieChart = dynamic(() => import("../../components/PieChart"), {
+const PieChart = dynamic(() => import("../../src/components/PieChart"), {
     ssr: false,
 });
 

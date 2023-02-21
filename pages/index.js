@@ -7,7 +7,7 @@ import React from 'react'
 
 export default function Home() {
   // useEffect(() => {
-  //     router.push("auth/new");
+  //     router.push("auth/Login");
   // }, [])
   return (
     <>

@@ -17,11 +17,12 @@ export default function App({ Component, pageProps }) {
   useLayoutEffect(() => {
     setTimeout(() => setIsLoading(false), 800);
   }, []);
-  const getLayout = Component.getLayout ?? ((page) => page);  return (
-    <>
+  const getLayout = Component.getLayout ?? ((page) => page);  
+  return (
+    // <>
+      <Provider store={store}>
       {isLoading ? <LoaderState /> : ""}
       <ToastContainer />
-      <Provider store={store}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link
@@ -47,6 +48,6 @@ export default function App({ Component, pageProps }) {
         />
         {getLayout(<Component {...pageProps} />)}
       </Provider>
-    </>
+    // </>
   )
 }

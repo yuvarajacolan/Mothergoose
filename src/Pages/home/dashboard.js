@@ -118,7 +118,7 @@ const Dashboard = (props) => {
         const accessToken = typeof window !== "undefined" ? sessionStorage.getItem("accessToken") : "";
         console.log("checkingForLogin",accessToken)
         if(accessToken === null) {
-            router.push("/auth/login")
+            router.push("/auth/Login")
         }
     }
     const _onFindPress = () => {

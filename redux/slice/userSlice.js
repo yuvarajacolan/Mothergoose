@@ -31,6 +31,7 @@ const userSlice = createSlice({
             state.patientBarChartinfo = payload.response;
             state.patientBarChartisLoading = payload.isLoading;
             state.patientBarChartisSuccess = payload.isSuccess
+            
         },
         patientEnrolledBarAction: (state, { payload }) => {
             state.patientEnrolledBarChartinfo = payload.response;

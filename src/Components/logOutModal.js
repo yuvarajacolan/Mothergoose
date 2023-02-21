@@ -17,7 +17,7 @@ export default function LogoutHandlerModal({ open, setOpen }) {
         // dispatch(logOutApi());
         sessionStorage.clear();
         localStorage.clear();
-        router.replace("/auth/login");
+        router.replace("/auth/Login");
     };
 
 

@@ -11,7 +11,7 @@ const Navbar = () => {
   const handleOpen =() =>{
     // sessionStorage.clear();
     // localStorage.clear();
-    // router.replace("/auth/login");
+    // router.replace("/auth/Login");
     setOpen(true)
   }
 

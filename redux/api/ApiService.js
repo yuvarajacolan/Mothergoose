@@ -40,7 +40,7 @@ console.log("url",url)
 
       const { data,status,message } = e;
       if (userId === null || undefined || "") {
-        router.push("/auth/login");
+        router.push("/auth/Login");
       } else if (status === 200 || status === "success") {
         return {
           status: "success",
@@ -74,7 +74,7 @@ console.log("url",url)
           });
       }
       if (userId === null || undefined || "") {
-        router.push("/auth/login");
+        router.push("/auth/Login");
       } else {
         router.push("/common/internet-issue");
       }

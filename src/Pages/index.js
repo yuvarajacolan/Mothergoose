@@ -6,7 +6,7 @@ import {useEffect} from 'react'
 
 export default function Home() {
   useEffect(() => {
-      router.push("auth/login");
+      router.push("auth/Login");
   }, [])
   return (
     <>
